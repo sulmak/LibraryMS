@@ -1,0 +1,5 @@
+@model List<Issue>
+<h3>My books</h3><table class="table bg-white"><tr><th>Book<th>Issued<th>Due<th>Status<th>Fine</tr>
+@foreach (var i in Model) { <tr><td>@i.Book!.Title<td>@i.IssuedOn.ToString("dd MMM")<td>@i.DueOn.ToString("dd MMM")
+<td>@(i.ReturnedOn != null ? "Returned" : i.DaysLate > 0 ? $"Overdue {i.DaysLate}d" : $"{i.DaysLeft} day(s) left")
+<td>@((i.ReturnedOn != null ? i.Fine : i.CurrentFine).ToString("0.00"))</tr> }</table>

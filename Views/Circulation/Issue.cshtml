@@ -1,0 +1,6 @@
+<h3>Issue book</h3><form method="post" class="col-md-5">
+<select name="userId" class="form-select mb-2" required><option value="">Member...</option>
+@foreach (AppUser u in ViewBag.Users) { <option value="@u.Id">@u.FullName (@u.Email)</option> }</select>
+<select name="bookId" class="form-select mb-2" required><option value="">Available book...</option>
+@foreach (Book b in ViewBag.Books) { <option value="@b.Id">@b.Title - @b.Author (@b.Available left)</option> }</select>
+<p class="text-muted">Due in @Issue.LoanDays days. Fine: @Issue.FinePerDay per late day.</p><button class="btn btn-primary">Issue</button></form>

@@ -1,0 +1,11 @@
+@model List<Book>
+<div class="d-flex justify-content-between mb-3"><h3>Book inventory</h3>
+@if (User.IsInRole("Admin") || User.IsInRole("Librarian")) { <a class="btn btn-primary" asp-action="Create">+ Add book</a> }</div>
+<form class="row g-2 mb-3"><div class="col-md-5"><input name="q" class="form-control" placeholder="Search title / author / ISBN"></div>
+<div class="col-auto pt-2"><label><input type="checkbox" name="onlyAvailable" value="true"> Available only</label></div>
+<div class="col-auto"><button class="btn btn-outline-dark">Search</button></div></form>
+<table class="table table-striped bg-white"><tr><th>Title<th>Author<th>ISBN<th>Category<th>Available / Total<th>Status<th></tr>
+@foreach (var b in Model) { <tr><td>@b.Title<td>@b.Author<td>@b.ISBN<td>@b.Category<td>@b.Available / @b.TotalCopies
+<td>@if (b.Available > 0) { <span class="badge bg-success">Available</span> } else { <span class="badge bg-danger">Out</span> }
+<td>@if (User.IsInRole("Admin")) { <form asp-action="Delete" asp-route-id="@b.Id" method="post"><button class="btn btn-sm btn-outline-danger">Delete</button></form> }</tr> }
+</table>

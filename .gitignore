@@ -1,0 +1,12 @@
+# .NET build output
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Local database and runtime uploads
+library.db
+library.db-shm
+library.db-wal
+wwwroot/uploads/

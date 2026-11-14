@@ -1,0 +1,3 @@
+@model List<Issue>
+<h3>Return history</h3><table class="table bg-white"><tr><th>Book<th>Member<th>Due<th>Returned<th>Fine</tr>
+@foreach (var i in Model) { <tr><td>@i.Book!.Title<td>@i.User!.FullName<td>@i.DueOn.ToString("dd MMM yyyy")<td>@i.ReturnedOn?.ToString("dd MMM yyyy")<td>@i.Fine.ToString("0.00")</tr> }</table>

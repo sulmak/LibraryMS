@@ -1,0 +1,14 @@
+<h3>Dashboard</h3>
+@if (User.IsInRole("Member")) {
+  var mine = (List<Issue>)ViewBag.Mine;
+  foreach (var i in mine.Where(i => i.DaysLate > 0)) { <div class="alert alert-danger">OVERDUE: <b>@i.Book!.Title</b> by @i.DaysLate day(s). Fine so far: @i.CurrentFine.ToString("0.00")</div> }
+  foreach (var i in mine.Where(i => i.DaysLeft >= 0 && i.DaysLeft <= 2)) { <div class="alert alert-warning">Return reminder: <b>@i.Book!.Title</b> is due @(i.DaysLeft == 0 ? "today" : $"in {i.DaysLeft} day(s)") (@i.DueOn.ToString("dd MMM")).</div> }
+  <p>You currently hold <b>@mine.Count</b> book(s). See <a asp-controller="Circulation" asp-action="MyBooks">My Books</a>.</p>
+} else {
+  <div class="row g-3">
+  @foreach (var (label, val, cls) in new[] { ("Book titles", $"{ViewBag.Titles}", "primary"), ("Copies available", $"{ViewBag.Available}", "success"),
+      ("Currently issued", $"{ViewBag.Issued}", "info"), ("Overdue", $"{ViewBag.Overdue}", "danger"),
+      ("Members", $"{ViewBag.Members}", "secondary"), ("Fines (total)", ((decimal)ViewBag.Fines).ToString("0.00"), "warning") }) {
+    <div class="col-6 col-md-4 col-lg-2"><div class="card text-bg-@cls"><div class="card-body"><div class="fs-3">@val</div>@label</div></div></div> }
+  </div>
+}

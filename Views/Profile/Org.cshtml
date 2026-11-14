@@ -1,0 +1,6 @@
+@model OrgProfile
+<h3>Organization profile</h3><form method="post" enctype="multipart/form-data" class="col-md-5">
+@if (Model.LogoPath != null) { <img src="@Model.LogoPath" height="80" class="mb-2"> }
+<input name="name" value="@Model.Name" class="form-control mb-2" placeholder="Name" required>
+<input name="address" value="@Model.Address" class="form-control mb-2" placeholder="Address"><input name="phone" value="@Model.Phone" class="form-control mb-2" placeholder="Phone">
+<input type="file" name="logo" accept="image/*" class="form-control mb-2"><button class="btn btn-primary">Save</button></form>

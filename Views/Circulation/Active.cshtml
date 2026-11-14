@@ -1,0 +1,7 @@
+@model List<Issue>
+<h3>Issued books - return &amp; delays</h3>
+<table class="table bg-white"><tr><th>Book<th>Member<th>Issued<th>Due<th>Delay<th>Fine<th></tr>
+@foreach (var i in Model) { <tr class="@(i.DaysLate > 0 ? "table-danger" : i.DaysLeft <= 2 ? "table-warning" : "")">
+<td>@i.Book!.Title<td>@i.User!.FullName<td>@i.IssuedOn.ToString("dd MMM yyyy")<td>@i.DueOn.ToString("dd MMM yyyy")
+<td>@(i.DaysLate > 0 ? $"{i.DaysLate} day(s)" : "-")<td>@i.CurrentFine.ToString("0.00")
+<td><form asp-action="Return" asp-route-id="@i.Id" method="post"><button class="btn btn-sm btn-success">Return</button></form></tr> }</table>

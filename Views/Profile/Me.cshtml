@@ -1,0 +1,5 @@
+@model AppUser
+<h3>My profile</h3><form method="post" enctype="multipart/form-data" class="col-md-5">
+@if (Model.PhotoPath != null) { <img src="@Model.PhotoPath" class="rounded-circle mb-2" width="110" height="110" style="object-fit:cover"> }
+<p class="text-muted">@Model.Email</p><input name="fullName" value="@Model.FullName" class="form-control mb-2" required>
+<input type="file" name="photo" accept="image/*" class="form-control mb-2"><button class="btn btn-primary">Save</button></form>
