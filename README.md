@@ -1,4 +1,7 @@
 # LibraryMS (ASP.NET Core 8 MVC + Identity + SQLite)
+
+![LibraryMS cover](docs/cover.png)
+
 Run: `dotnet restore && dotnet run`  -> open the printed URL.
 Admin login: admin@lib.com / Admin@123 (seeded). Self-registered users become Members.
 Roles: Admin (everything, org profile, delete books) | Librarian (inventory, issue, return) | Member (browse, own books, warnings).
